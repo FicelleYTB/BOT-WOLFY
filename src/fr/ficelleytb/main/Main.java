@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
@@ -34,13 +35,13 @@ public class Main {
             Thread.sleep(600);
             System.out.println("[BOT] Ok, im ready :) !");
             Thread.sleep(500);
-            ToggleChat();
+            StartMessage();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    private static void pressAnyKeyToContinue() {
+    public static void pressAnyKeyToContinue() {
         System.out.println("Press Enter key to continue... (connect to your account and go to in game)");
         try
         {
@@ -50,20 +51,26 @@ public class Main {
         {}
     }
 
-    private static void ToggleChat() {
+    public static void StartMessage() {
         try {
             WebElement Chat = driver.findElement(By.tagName("textarea"));
-            Chat.sendKeys("Yo les mecs ça va ?" + Keys.ENTER);
-            Thread.sleep(100);
-            Chat.sendKeys("Moi ça va si on me demande en avance" + Keys.ENTER);
-            Thread.sleep(100);
-            Chat.sendKeys("Je parie que ça va être une bonne game pas vous?" + Keys.ENTER);
-            Thread.sleep(100);
-            Chat.sendKeys("Waw ça serais cool si ça commence mtn" + Keys.ENTER);
-            Thread.sleep(100);
-            Chat.sendKeys("Et si je vous dis que je n'ai pas écris ce message mais c'est un bout de code en java :o" + Keys.ENTER);
+            Chat.sendKeys("Yo les mék ça va ?" + Keys.ENTER);
+            Thread.sleep(400);
+            Chat.sendKeys("Moi ça va si on me demande en avance :) :D o:" + Keys.ENTER);
+            Thread.sleep(400);
+            Chat.sendKeys("Belle journée quand même (je raconte ma vie) :) :D o:" + Keys.ENTER);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean isGameStartSoon(){
+        WebElement Chat = driver.findElement(By.tagName("textarea"));
+        WebElement timer = driver.findElement(By.className("Header_timeState__2bhUr Header_timer__36MsP"));
+        if(timer.getText() == "0:05"){
+            Chat.sendKeys("GL GL GL");
+            return true;
+        }
+        return false;
     }
 }
